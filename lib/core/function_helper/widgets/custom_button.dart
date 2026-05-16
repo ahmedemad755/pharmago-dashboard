@@ -12,7 +12,7 @@ class GradientButton extends StatefulWidget {
   final IconData? icon;
 
   const GradientButton({
-    Key? key,
+    super.key,
     required this.label,
     required this.onPressed,
     this.width = double.infinity,
@@ -22,7 +22,7 @@ class GradientButton extends StatefulWidget {
     this.borderRadius = 16,
     this.hasIcon = true,
     this.icon = Icons.arrow_forward_ios,
-  }) : super(key: key);
+  });
 
   @override
   State<GradientButton> createState() => _GradientButtonState();

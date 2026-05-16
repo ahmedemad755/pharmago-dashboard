@@ -201,7 +201,7 @@ Widget _buildProductItem(BuildContext context, QueryDocumentSnapshot doc) {
               Row(
                 children: [
                   Text(
-                    "${data['price']} \$",
+                    "${data['price']} جنيه مصري",
                     style: const TextStyle(color: Colors.teal, fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(width: 8),

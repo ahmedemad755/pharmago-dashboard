@@ -148,7 +148,7 @@ final double pharmacyLng;
       code: code,
       description: description,
       imageurl: imageurl,
-      image: image!, // ملاحظة: تأكد أن الـ Entity يقبل Null في حقل الصورة عند العرض
+      image: image, // ملاحظة: تأكد أن الـ Entity يقبل Null في حقل الصورة عند العرض
       averageRating: averageRating,
       ratingcount: ratingcount,
       expirationDate: expirationDate,

@@ -24,11 +24,13 @@ class InventoryView extends StatelessWidget {
       ),
       body: BlocBuilder<InventoryCubit, InventoryState>(
         builder: (context, state) {
-          if (state is InventoryLoading)
+          if (state is InventoryLoading) {
             return const Center(child: CircularProgressIndicator());
+          }
           if (state is InventoryLoaded) {
-            if (state.inventoryList.isEmpty)
+            if (state.inventoryList.isEmpty) {
               return const Center(child: Text("المخزن فارغ"));
+            }
 
             // تجميع حسب التصنيف
             Map<String, List<InventoryEntity>> groupedByCategory = {};

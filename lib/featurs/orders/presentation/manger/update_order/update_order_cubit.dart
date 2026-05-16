@@ -12,7 +12,7 @@ class UpdateOrderCubit extends Cubit<UpdateOrderState> {
   UpdateOrderCubit(this.ordersRepo) : super(UpdateOrderInitial());
 
   final OrdersRepo ordersRepo;
-  List<OrderProductEntity> _tempProducts = [];
+  final List<OrderProductEntity> _tempProducts = [];
   double _tempTotalPrice = 0.0;
 
   // 1. إضافة منتج للقائمة المؤقتة وتحديث السعر

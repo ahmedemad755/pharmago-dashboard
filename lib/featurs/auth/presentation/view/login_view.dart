@@ -55,39 +55,6 @@ class _LoginViewState extends State<LoginView> {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         title: const Text('تسجيل دخول الصيدلية'),
-        // actions: [
-        //   BlocBuilder<PharmacyLoginCubit, PharmacyLoginState>(
-        //     builder: (context, state) {
-        //       // 1. نحاول نجيب الحالة من الـ State أولاً
-        //       String? currentStatus;
-
-        //       if (state is PharmacyLoginSuccess) {
-        //         currentStatus = state.pharmacyEntity.status;
-        //       } else {
-        //         // 2. لو مفيش Success حالي، نجيب آخر حالة متسجلة في الموبايل
-        //         currentStatus = Prefs.getString("pharmacy_status");
-        //       }
-
-        //       if (currentStatus == null || currentStatus.isEmpty) {
-        //         return const SizedBox.shrink();
-        //       }
-
-        //       return IconButton(
-        //         icon: Icon(
-        //           currentStatus == 'approved'
-        //               ? Icons.check_circle
-        //               : Icons.hourglass_empty,
-        //           color: currentStatus == 'approved'
-        //               ? Colors.green
-        //               : Colors.orange,
-        //         ),
-        //         onPressed: () {
-        //           Navigator.of(context).pushNamed(AppRoutes.pendingApproval);
-        //         },
-        //       );
-        //     },
-        //   ),
-        // ],
       ),
       body: BlocConsumer<PharmacyLoginCubit, PharmacyLoginState>(
         listener: (context, state) async {

@@ -5,7 +5,7 @@ class SensorCard extends StatelessWidget {
   final IconData icon;
   final Color color;
 
-  SensorCard({required this.label, required this.value, required this.icon, required this.color});
+  const SensorCard({super.key, required this.label, required this.value, required this.icon, required this.color});
 
   @override
   Widget build(BuildContext context) {

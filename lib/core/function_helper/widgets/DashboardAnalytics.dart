@@ -296,8 +296,9 @@ class _DashboardAnalyticsViewState extends State<DashboardAnalyticsView> {
           .where('status', whereIn: ['delivered', 'shipped'])
           .snapshots(),
       builder: (context, snapshot) {
-        if (!snapshot.hasData)
+        if (!snapshot.hasData) {
           return const Center(child: CircularProgressIndicator());
+        }
 
         final orders = snapshot.data!.docs;
         Map<String, Map<String, dynamic>> productStats = {};

@@ -1,9 +1,11 @@
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:fruitesdashboard/core/const/const.dart';
 import 'package:fruitesdashboard/core/services/storge_service.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart' as b;
+import 'package:path/path.dart' as p;
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class SupabaseStorgeService implements StorgeService {
@@ -22,10 +24,22 @@ class SupabaseStorgeService implements StorgeService {
       final exists = buckets.any((bucket) => bucket.name == bucketName);
 
       if (!exists) {
-        await client.storage.createBucket(bucketName);
-        print('✅ Bucket $bucketName created successfully');
+        await client.storage.createBucket(
+          bucketName,
+          const BucketOptions(public: true),
+        );
+        print('Bucket $bucketName created successfully');
       } else {
-        print('ℹ️ Bucket $bucketName already exists, skipping creation');
+        final bucket = buckets.firstWhere((bucket) => bucket.name == bucketName);
+        if (!bucket.public) {
+          await client.storage.updateBucket(
+            bucketName,
+            const BucketOptions(public: true),
+          );
+          print('Bucket $bucketName updated to public');
+          return;
+        }
+        print('Bucket $bucketName already exists, skipping creation');
       }
     } catch (e) {
       print('❌ Error checking/creating bucket: $e');
@@ -69,4 +83,39 @@ await Supabase.instance.client.storage
       print('❌ Error deleting file from Supabase: $e');
     }
   }
+
+@override
+Future<String?> uploadImageBytes(Uint8List bytes, String path) async {
+  try {
+    final uniqueId = DateTime.now().millisecondsSinceEpoch.toString();
+    final folder = p.dirname(path).replaceAll(r'\', '/');
+    final fileName = p.basename(path).isEmpty ? 'image.jpg' : p.basename(path);
+    final filePath = folder == '.'
+        ? '${uniqueId}_$fileName'
+        : '$folder/${uniqueId}_$fileName';
+
+    await Supabase.instance.client.storage
+        .from(supabaseBucketName)
+        .uploadBinary(
+          filePath,
+          bytes,
+          fileOptions: const FileOptions(
+            cacheControl: '3600',
+            upsert: false,
+          ),
+        );
+
+    return Supabase.instance.client.storage
+        .from(supabaseBucketName)
+        .getPublicUrl(filePath);
+  } on StorageException catch (e) {
+    print('Storage Error: ${e.message}');
+    return null;
+  } catch (e) {
+    print('Unexpected Error: $e');
+    return null;
+  }
 }
+
+}
+

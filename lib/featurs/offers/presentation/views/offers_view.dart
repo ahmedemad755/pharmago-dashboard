@@ -98,7 +98,7 @@ void _showAddOfferSheet(BuildContext context, String pharmacyId) {
                         labelText: "اختر القسم المستهدف", 
                         border: OutlineInputBorder()
                       ),
-                      value: selectedCategoryId,
+                      initialValue: selectedCategoryId,
                       items: snapshot.data!.docs.map((doc) {
                         return DropdownMenuItem<String>(
                           value: doc.id,

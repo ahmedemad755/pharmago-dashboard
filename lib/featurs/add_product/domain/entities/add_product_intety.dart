@@ -1,4 +1,3 @@
-import 'dart:io';
 
 import 'package:fruitesdashboard/featurs/add_product/domain/entities/review_entite.dart';
 import 'package:image_picker/image_picker.dart';
@@ -9,7 +8,7 @@ class AddProductIntety {
   final num cost;
   final String code;
   final String description;
-  final XFile image;
+  final XFile? image;
   String? imageurl;
   final DateTime expirationDate;
   final int unitAmount;

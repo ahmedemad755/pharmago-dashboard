@@ -23,12 +23,15 @@ class InventoryView extends StatelessWidget {
       appBar: _buildAppBar(),
       body: BlocBuilder<InventoryCubit, InventoryState>(
         builder: (context, state) {
-          if (state is InventoryLoading)
+          if (state is InventoryLoading) {
             return const Center(child: CircularProgressIndicator());
-          if (state is InventoryLoaded)
+          }
+          if (state is InventoryLoaded) {
             return _InventoryBody(inventory: state.inventoryList);
-          if (state is InventoryError)
+          }
+          if (state is InventoryError) {
             return Center(child: Text(state.message));
+          }
           return const Center(child: Text("لا توجد بيانات"));
         },
       ),

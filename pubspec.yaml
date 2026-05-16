@@ -7,6 +7,7 @@ environment:
   sdk: ^3.8.1
 
 dependencies:
+  archive: ^3.6.1
   dartz: ^0.10.1
   firebase_core: ^4.4.0
   firebase_storage: ^13.0.1
@@ -35,6 +36,10 @@ dependencies:
   firebase_database: ^12.3.0
   flutter_image_compress: ^2.4.0
   path_provider: ^2.1.5
+  excel: ^4.0.6
+  file_picker: ^10.3.3
+  xml: ^6.6.1
+  http: ^1.6.0
   
 
 dev_dependencies:

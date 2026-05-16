@@ -5,4 +5,5 @@ import 'package:image_picker/image_picker.dart';
 
 abstract class ImagRepo {
   Future<Either<Faliur, String>> uploadImage(XFile image);
+  Future<Either<Faliur, String>> uploadImageFromUrl(String imageUrl);
 }
